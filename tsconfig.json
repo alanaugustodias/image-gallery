@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "strict": true,
+        "noEmit": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "isolatedModules": false,
+        "esModuleInterop": true,
+        "baseUrl": "./",
+        "paths": {
+            "@app/components": ["src/components/index.tsx"],
+            "@app/containers": ["src/containers/index.tsx"],
+            "@app/enums": ["src/enums/index.tsx"],
+            "@app/helper": ["src/helper/index.tsx"],
+            "@app/interfaces": ["src/interfaces/index.tsx"],
+            "@app/reducers": ["src/reducers/index.tsx"],
+            "@app/routes": ["src/routes/index.tsx"],
+            "@app/services": ["src/services/index.tsx"]
+        },
+        "typeRoots": ["custom_typings", "node_modules/@types"]
+    },
+    "include": ["./src/**/*"]
+}
