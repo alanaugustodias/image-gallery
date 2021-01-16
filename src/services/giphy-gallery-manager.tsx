@@ -17,9 +17,9 @@ export default class GiphyGalleryManager implements DefaultGalleryManager {
         return axios.get(`${this.gifsURL}?${query}`).then(({data}) => this.convertGiphyResponse(data));
     }
 
-    private convertGiphyResponse({data, pagination}: GiphyGalleryResponse): GalleryResponse {
+    private convertGiphyResponse({data}: GiphyGalleryResponse): GalleryResponse {
         return {
-            images: data.map(({id, url, images}) => {
+            images: data.map(({id, url, title, images}) => {
                 const img: Images = {
                     preview: images.downsized,
                     original: images.original,
@@ -27,14 +27,10 @@ export default class GiphyGalleryManager implements DefaultGalleryManager {
                 return {
                     id,
                     url,
+                    title,
                     images: img,
                 };
             }),
-            pagination: {
-                total: pagination.total_count,
-                count: pagination.count,
-                offset: pagination.offset,
-            },
         };
     }
 }

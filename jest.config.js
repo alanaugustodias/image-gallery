@@ -37,10 +37,13 @@ module.exports = {
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
             '<rootDir>/assetsTransformer.js',
         '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
+        '@app/actions(.*)$': '<rootDir>/src/actions/index.tsx',
         '@app/components(.*)$': '<rootDir>/src/components/index.tsx',
+        '@app/constants(.*)$': '<rootDir>/src/constants/index.tsx',
         '@app/containers(.*)$': '<rootDir>/src/containers/index.tsx',
         '@app/enums(.*)$': '<rootDir>/src/enums/index.tsx',
         '@app/helper(.*)$': '<rootDir>/src/helper/index.tsx',
+        '@app/hooks(.*)$': '<rootDir>/src/hooks/index.tsx',
         '@app/interfaces(.*)$': '<rootDir>/src/interfaces/index.tsx',
         '@app/reducers(.*)$': '<rootDir>/src/reducers/index.tsx',
         '@app/routes(.*)$': '<rootDir>/src/routes/index.tsx',

@@ -13,16 +13,10 @@ export interface Images {
 export interface PicturesContent {
     id: string;
     url: string;
+    title: string;
     images: Images;
-}
-
-export interface PaginationContent {
-    total: number;
-    count: number;
-    offset: number;
 }
 
 export interface GalleryResponse {
     images: PicturesContent[];
-    pagination: PaginationContent;
 }

@@ -1,36 +1,26 @@
-import {Home as HomeComponent, Picture} from '@app/components';
 import {ReactElement, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
+import {GalleryActions} from '@app/actions';
 import {GalleryManager} from '@app/services';
-import {GalleryResponse} from '@app/interfaces';
+import {Home as HomeComponent} from '@app/components';
 
 function Home(): ReactElement {
     let galleryManager: GalleryManager;
-    const [gallery, setGallery] = useState<GalleryResponse>({
-        images: [],
-        pagination: {
-            count: 0,
-            total: 0,
-            offset: 0,
-        },
-    });
+    const {currentPage, galleryData} = useSelector((state) => state.gallery);
+    const dispath = useDispatch();
 
     useEffect(() => {
-        galleryManager = new GalleryManager();
-        galleryManager.getImages(0, 0).then((galleryResponse) => {
-            setGallery(galleryResponse);
+        if (!galleryManager) {
+            galleryManager = new GalleryManager();
+        }
+
+        galleryManager.getImages(25, currentPage).then((galleryResponse) => {
+            dispath(GalleryActions.addGalleryData(galleryResponse));
         });
-    }, []);
+    }, [currentPage]);
 
-    const getGallery = () => (
-        <div>
-            {gallery.images.length &&
-                gallery.images.map(({id, images}) => <Picture key={id} src={images.preview.url} />)}
-            {!gallery.images.length && 'No images were found :('}
-        </div>
-    );
-
-    return <HomeComponent>{getGallery()}</HomeComponent>;
+    return <HomeComponent galleryData={galleryData} />;
 }
 
 export default Home;

@@ -28,10 +28,13 @@ const baseConfig = {
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
         alias: {
+            '@app/actions': path.resolve(__dirname, rootFolder, 'actions/index.tsx'),
             '@app/components': path.resolve(__dirname, rootFolder, 'components/index.tsx'),
+            '@app/constants': path.resolve(__dirname, rootFolder, 'constants/index.tsx'),
             '@app/containers': path.resolve(__dirname, rootFolder, 'containers/index.tsx'),
             '@app/enums': path.resolve(__dirname, rootFolder, 'enums/index.tsx'),
             '@app/helper': path.resolve(__dirname, rootFolder, 'helper/index.tsx'),
+            '@app/hooks': path.resolve(__dirname, rootFolder, 'hooks/index.tsx'),
             '@app/interfaces': path.resolve(__dirname, rootFolder, 'interfaces/index.tsx'),
             '@app/reducers': path.resolve(__dirname, rootFolder, 'reducers/index.tsx'),
             '@app/routes': path.resolve(__dirname, rootFolder, 'routes/index.tsx'),

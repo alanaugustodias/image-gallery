@@ -21,11 +21,6 @@ export default class FlickrGalleryManager implements DefaultGalleryManager {
         console.log('###', flickrResponse);
         return {
             images: [],
-            pagination: {
-                count: 0,
-                offset: 0,
-                total: 0,
-            },
         };
     }
 }

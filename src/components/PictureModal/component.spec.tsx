@@ -1,29 +1,24 @@
-import Row from './component';
+import Picture from './component';
 import {shallow} from 'enzyme';
 
-describe('Row Component', () => {
+describe('Picture Component', () => {
     it('should render basic instance', () => {
-        const wrapper = shallow(<Row />);
+        const title = 'Picture Title';
+        const wrapper = shallow(<Picture title={title} />);
         expect(wrapper.length).toBe(1);
-    });
-
-    it('should render children', () => {
-        const text = 'Row Children';
-        const wrapper = shallow(<Row>{text}</Row>);
-        expect(wrapper.length).toBe(1);
-        expect(wrapper.props().children).toBe(text);
+        expect(wrapper.props().title).toBe(title);
     });
 
     it('should handle className', () => {
         const className = 'test-class';
-        const wrapper = shallow(<Row className={className} />);
+        const wrapper = shallow(<Picture className={className} title="Picture Title" />);
         expect(wrapper.length).toBe(1);
         expect(wrapper.hasClass(className)).toBeTruthy();
     });
 
     it('should handle click', () => {
         const onClickHandler = jest.fn();
-        const wrapper = shallow(<Row onClick={onClickHandler} />);
+        const wrapper = shallow(<Picture onClick={onClickHandler} title="Picture Title" />);
         expect(wrapper.length).toBe(1);
         wrapper.simulate('click');
         expect(onClickHandler).toHaveBeenCalledTimes(1);

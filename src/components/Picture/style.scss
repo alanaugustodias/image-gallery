@@ -1,4 +1,38 @@
-.picture {
-  width: 200px;
-  height: 200px;
+.picture-wrapper {
+    position: relative;
+    cursor: pointer;
+
+    .title-overlay {
+        opacity: 0;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+        text-align: center;
+        background-color: white;
+        transition: opacity 0.3s ease-in-out;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            color: black;
+            text-align: center;
+            word-wrap: normal;
+            font-weight: 600;
+        }
+    }
+
+    &:hover {
+        .title-overlay {
+            opacity: .8;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
 }

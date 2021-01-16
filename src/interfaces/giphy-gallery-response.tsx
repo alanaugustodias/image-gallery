@@ -38,6 +38,7 @@ export interface GiphyPicturesContent {
     id: string;
     type: GiphyType;
     url: string;
+    title: string;
     embed_url: string;
     images: GiphyImages;
 }

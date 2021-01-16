@@ -61,7 +61,8 @@
         "no-labels": ["error"],
         "max-depth": ["error"],
         "no-shadow-restricted-names": ["error"],
-        "no-shadow": ["error"],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
         "quotes": ["error", "single", {"allowTemplateLiterals": true}],
         "operator-linebreak": ["error", "after"],
         "object-property-newline": ["error"],
@@ -69,7 +70,7 @@
         "no-underscore-dangle": [
             "error",
             {
-                "allow": ["__REDUX_DEVTOOLS_EXTENSION__", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
+                "allow": ["__REDUX_DEVTOOLS_EXTENSION__", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__", "__ENVIRONMENT__"]
             }
         ],
         "no-multiple-empty-lines": [

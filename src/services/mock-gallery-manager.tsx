@@ -1,15 +1,41 @@
-import {DefaultGalleryManager, GalleryResponse, GiphyGalleryResponse, Images} from '@app/interfaces';
+import {
+    DefaultGalleryManager,
+    GalleryResponse,
+    GiphyGalleryResponse,
+    GiphyPicturesContent,
+    Images,
+} from '@app/interfaces';
 
 import GalleryMockData from '../assets/mock_data.json';
 
 export default class MockGalleryManager implements DefaultGalleryManager {
-    public getImages(limit: number, offset?: number): Promise<GalleryResponse> {
-        return Promise.resolve(this.convertMockResponse(GalleryMockData));
+    private galleryData: GalleryResponse;
+
+    constructor() {
+        this.galleryData = this.convertMockResponse(GalleryMockData);
     }
 
-    private convertMockResponse({data, pagination}: GiphyGalleryResponse): GalleryResponse {
+    public getImages(limit: number, offset: number): Promise<GalleryResponse> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    images: this.paginate(limit, offset),
+                });
+            }, 1000);
+        });
+    }
+
+    private convertMockResponse({data}: GiphyGalleryResponse): GalleryResponse {
+        let workingData: GiphyPicturesContent[] = [];
+        /**
+         * Intentionally increasing the size of Mock Data to test Infinite Scroll
+         */
+        for (let i = 0; i < 1000; i++) {
+            workingData = workingData.concat(data.slice(0));
+        }
+
         return {
-            images: data.map(({id, url, images}) => {
+            images: workingData.map(({id, url, title, images}) => {
                 const img: Images = {
                     preview: images.downsized,
                     original: images.original,
@@ -17,14 +43,14 @@ export default class MockGalleryManager implements DefaultGalleryManager {
                 return {
                     id,
                     url,
+                    title,
                     images: img,
                 };
             }),
-            pagination: {
-                total: pagination.total_count,
-                count: pagination.count,
-                offset: pagination.offset,
-            },
         };
+    }
+
+    private paginate(pageSize: number, pageNumber: number) {
+        return this.galleryData.images.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
     }
 }

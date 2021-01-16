@@ -1,0 +1,23 @@
+.gallery {
+    .gallery-view {
+        columns: 5 200px;
+        column-gap: 10px;
+        width: 100%;
+        margin: 0 auto;
+
+        .picture-wrapper {
+            display: inline-block;
+            width: 100%;
+            margin: 3px 0;
+        }
+    }
+
+    .load-more {
+        width: 100%;
+        height: 30px;
+        background: grey;
+        text-align: center;
+        line-height: 30px;
+        margin-top: 20px;
+    }
+}

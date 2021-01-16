@@ -1,0 +1,65 @@
+.picture-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    &.show {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    figure {
+        text-align: center;
+    }
+
+    label {
+        margin: auto;
+        display: block;
+        text-align: center;
+        color: white;
+        font-size: 1.5em;
+        padding: 10px 0;
+        height: auto;
+    }
+
+    .modal-content,
+    label {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: $lightGrey;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: $grey;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
