@@ -9,17 +9,23 @@ import {
 import GalleryMockData from '../assets/mock_data.json';
 
 export default class MockGalleryManager implements DefaultGalleryManager {
+    private randomIdCharacters: string;
     private galleryData: GalleryResponse;
 
     constructor() {
+        this.randomIdCharacters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         this.galleryData = this.convertMockResponse(GalleryMockData);
     }
 
     public getImages(limit: number, offset: number): Promise<GalleryResponse> {
         return new Promise((resolve) => {
             setTimeout(() => {
+                const nextImages = this.paginate(limit, offset);
+                if (!nextImages.length) {
+                    resolve({images: []});
+                }
                 resolve({
-                    images: this.paginate(limit, offset),
+                    images: nextImages,
                 });
             }, 1000);
         });
@@ -30,18 +36,18 @@ export default class MockGalleryManager implements DefaultGalleryManager {
         /**
          * Intentionally increasing the size of Mock Data to test Infinite Scroll
          */
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < 10; i++) {
             workingData = workingData.concat(data.slice(0));
         }
 
         return {
-            images: workingData.map(({id, url, title, images}) => {
+            images: workingData.map(({url, title, images}) => {
                 const img: Images = {
                     preview: images.downsized,
                     original: images.original,
                 };
                 return {
-                    id,
+                    id: this.randomId(20),
                     url,
                     title,
                     images: img,
@@ -52,5 +58,13 @@ export default class MockGalleryManager implements DefaultGalleryManager {
 
     private paginate(pageSize: number, pageNumber: number) {
         return this.galleryData.images.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+    }
+
+    private randomId(length: number): string {
+        let result = '';
+        for (let i = length; i > 0; --i) {
+            result += this.randomIdCharacters[Math.floor(Math.random() * this.randomIdCharacters.length)];
+        }
+        return result;
     }
 }

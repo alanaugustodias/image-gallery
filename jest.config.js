@@ -42,11 +42,9 @@ module.exports = {
         '@app/constants(.*)$': '<rootDir>/src/constants/index.tsx',
         '@app/containers(.*)$': '<rootDir>/src/containers/index.tsx',
         '@app/enums(.*)$': '<rootDir>/src/enums/index.tsx',
-        '@app/helper(.*)$': '<rootDir>/src/helper/index.tsx',
         '@app/hooks(.*)$': '<rootDir>/src/hooks/index.tsx',
         '@app/interfaces(.*)$': '<rootDir>/src/interfaces/index.tsx',
         '@app/reducers(.*)$': '<rootDir>/src/reducers/index.tsx',
-        '@app/routes(.*)$': '<rootDir>/src/routes/index.tsx',
         '@app/services(.*)$': '<rootDir>/src/services/index.tsx',
     },
 };

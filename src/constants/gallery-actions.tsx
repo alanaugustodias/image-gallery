@@ -1,2 +1,3 @@
 export const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE';
 export const ADD_GALLERY_DATA = 'ADD_GALLERY_DATA';
+export const SET_LAST_PAGE = 'SET_LAST_PAGE';

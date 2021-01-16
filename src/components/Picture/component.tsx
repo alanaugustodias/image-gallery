@@ -1,30 +1,37 @@
 import './style.scss';
 
-import {HTMLAttributes, ImgHTMLAttributes, ReactElement} from 'react';
+import {ImgHTMLAttributes, ReactElement, useState} from 'react';
 
-import {WithChildren} from '@app/helper';
+import {PictureModal} from '@app/components';
+import {PicturesContent} from '@app/interfaces';
 
-function Picture({className, title, pictureWrapperProps, ...props}: PictureProps): ReactElement {
+function Picture({className, picture, ...props}: PictureProps): ReactElement {
+    const [showPictureModal, setShowPictureModal] = useState(false);
+
     const getCaptionOverlay = () => {
-        if (!title) {
+        if (!picture.title) {
             return null;
         }
         return (
             <div className="title-overlay">
-                <span>{title}</span>
+                <span>{picture.title}</span>
             </div>
         );
     };
+
     return (
-        <div className={`picture-wrapper ${className || ''}`} {...pictureWrapperProps}>
-            {getCaptionOverlay()}
-            <img {...props} />
-        </div>
+        <>
+            <div className={`picture-wrapper ${className || ''}`} onClick={() => setShowPictureModal(true)}>
+                {getCaptionOverlay()}
+                <img {...props} />
+            </div>
+            <PictureModal picture={picture} onClose={() => setShowPictureModal(false)} show={showPictureModal} />
+        </>
     );
 }
 
-type PictureProps = WithChildren<
-    {title: string; pictureWrapperProps?: HTMLAttributes<HTMLDivElement>} & ImgHTMLAttributes<HTMLImageElement>
->;
+type PictureProps = {
+    picture: PicturesContent;
+} & ImgHTMLAttributes<HTMLImageElement>;
 
 export default Picture;

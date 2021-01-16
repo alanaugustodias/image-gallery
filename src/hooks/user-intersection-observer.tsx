@@ -16,10 +16,8 @@ function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>({
 }: Args<T>): ReturnType {
     const observer = useRef<IntersectionObserver | null>(null);
     const [entry, setEntry] = useState<IntersectionObserverEntry>();
-    const isClient = typeof window !== `undefined`;
-    const hasIOSupport = isClient && !!window.IntersectionObserver;
     const noUpdate = entry?.isIntersecting && freezeOnceVisible;
-    const IOOptions = {
+    const observerOptions = {
         threshold,
         root,
         rootMargin,
@@ -31,19 +29,22 @@ function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>({
 
     useEffect(() => {
         const node = elementRef?.current;
-        if (!hasIOSupport || noUpdate || !node) {
+        if (!node || noUpdate) {
             return;
         }
+
         if (observer.current) {
             observer.current.disconnect();
         }
-        observer.current = new IntersectionObserver(updateEntry, IOOptions);
+
+        observer.current = new IntersectionObserver(updateEntry, observerOptions);
         const {current: currentObserver} = observer;
         currentObserver.observe(node);
+
         return () => {
             currentObserver.disconnect();
         };
-    }, [elementRef, threshold, root, rootMargin, noUpdate]);
+    }, [elementRef, threshold, root, rootMargin, freezeOnceVisible]);
 
     return [!!entry?.isIntersecting, entry];
 }

@@ -1,13 +1,14 @@
-import {ReactElement, useEffect, useState} from 'react';
+import {ReactElement, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {Gallery} from '@app/components';
 import {GalleryActions} from '@app/actions';
 import {GalleryManager} from '@app/services';
-import {Home as HomeComponent} from '@app/components';
+import {RootState} from '@app/reducers';
 
 function Home(): ReactElement {
     let galleryManager: GalleryManager;
-    const {currentPage, galleryData} = useSelector((state) => state.gallery);
+    const {currentPage, isLastPage, galleryData} = useSelector((state: RootState) => state.gallery);
     const dispath = useDispatch();
 
     useEffect(() => {
@@ -16,11 +17,15 @@ function Home(): ReactElement {
         }
 
         galleryManager.getImages(25, currentPage).then((galleryResponse) => {
-            dispath(GalleryActions.addGalleryData(galleryResponse));
+            if (!galleryResponse.images.length) {
+                dispath(GalleryActions.setLastPage());
+            } else {
+                dispath(GalleryActions.addGalleryData(galleryResponse));
+            }
         });
     }, [currentPage]);
 
-    return <HomeComponent galleryData={galleryData} />;
+    return <Gallery galleryData={galleryData} isLastPage={isLastPage} />;
 }
 
 export default Home;

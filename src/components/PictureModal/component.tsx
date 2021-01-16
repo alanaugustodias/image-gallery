@@ -3,7 +3,6 @@ import './style.scss';
 import {HTMLAttributes, ReactElement} from 'react';
 
 import {PicturesContent} from '@app/interfaces';
-import {WithChildren} from '@app/helper';
 
 function PictureModal({className, onClose, picture, show, ...props}: PictureModalProps): ReactElement {
     const handleModalClick = ({target}: {target: EventTarget}) => {
@@ -16,7 +15,7 @@ function PictureModal({className, onClose, picture, show, ...props}: PictureModa
     };
 
     const getImageContent = () =>
-        picture ? (
+        picture && show ? (
             <figure>
                 <img src={picture.images.original.url} />
                 <label>{picture.title}</label>
@@ -35,12 +34,10 @@ function PictureModal({className, onClose, picture, show, ...props}: PictureModa
     );
 }
 
-type PictureModalProps = WithChildren<
-    {
-        picture?: PicturesContent;
-        show: Boolean;
-        onClose: Function;
-    } & HTMLAttributes<HTMLElement>
->;
+type PictureModalProps = {
+    picture?: PicturesContent;
+    show: Boolean;
+    onClose: Function;
+} & HTMLAttributes<HTMLElement>;
 
 export default PictureModal;
