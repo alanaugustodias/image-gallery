@@ -26,13 +26,6 @@
     "rules": {
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "brace-style": [
-            "error",
-            "stroustrup",
-            {
-                "allowSingleLine": true
-            }
-        ],
         "comma-dangle": 0,
         "eol-last": ["error", "always"],
         "arrow-parens": 0,
@@ -64,7 +57,7 @@
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": ["error"],
         "quotes": ["error", "single", {"allowTemplateLiterals": true}],
-        "operator-linebreak": ["error", "after"],
+        "operator-linebreak": ["error", "before"],
         "object-property-newline": ["error"],
         "no-negated-condition": ["error"],
         "no-underscore-dangle": [

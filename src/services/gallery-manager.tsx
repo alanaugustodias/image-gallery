@@ -23,8 +23,8 @@ export default class GalleryManager implements DefaultGalleryManager {
 
     /**
      * Get generic images
-     * @param pageSize 
-     * @param pageNumber 
+     * @param pageSize
+     * @param pageNumber
      * @returns Promise<GalleryResponse>
      */
     public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {

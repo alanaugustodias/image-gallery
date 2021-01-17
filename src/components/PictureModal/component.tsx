@@ -37,7 +37,7 @@ function PictureModal({className, onClose, picture, show, ...props}: PictureModa
 type PictureModalProps = {
     picture?: PicturesContent;
     show: boolean;
-    onClose: Function;
+    onClose(): void;
 } & HTMLAttributes<HTMLElement>;
 
 export default PictureModal;

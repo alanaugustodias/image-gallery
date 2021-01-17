@@ -19,8 +19,8 @@ export default class MockGalleryManager implements DefaultGalleryManager {
 
     /**
      * Get images using Mock Data
-     * @param pageSize 
-     * @param pageNumber 
+     * @param pageSize
+     * @param pageNumber
      * @returns Promise<GalleryResponse>
      */
     public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {
@@ -39,7 +39,7 @@ export default class MockGalleryManager implements DefaultGalleryManager {
 
     /**
      * Convert the received data into GalleryResponse
-     * @param param0 
+     * @param param0
      * @returns GalleryResponse
      */
     private convertMockResponse({data}: GiphyGalleryResponse): GalleryResponse {
@@ -68,8 +68,8 @@ export default class MockGalleryManager implements DefaultGalleryManager {
 
     /**
      * Mock Pagination for Tests Purpose
-     * @param pageSize 
-     * @param pageNumber 
+     * @param pageSize
+     * @param pageNumber
      */
     private paginate(pageSize: number, pageNumber: number) {
         return this.galleryData.images.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
@@ -77,7 +77,7 @@ export default class MockGalleryManager implements DefaultGalleryManager {
 
     /**
      * Mock Random Id for Tests Purpose
-     * @param length 
+     * @param length
      */
     private randomId(length: number): string {
         let result = '';
