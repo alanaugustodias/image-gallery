@@ -51,9 +51,8 @@ const baseConfig = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, rootFolder, 'index.html'),
-            filename: 'index.html',
-            inject: 'body',
+            template: path.resolve(__dirname, rootFolder, 'index.ejs'),
+            baseUrl: process.env.NODE_ENV == 'development' ? '/' : 'https://alanaugustodias.github.io/image-gallery/'
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin({
