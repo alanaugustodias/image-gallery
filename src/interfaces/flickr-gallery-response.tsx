@@ -1,34 +1,23 @@
-import {FlickrType} from '@app/enums';
-
-export interface FlickrImage {
-    height: string;
-    size: string;
-    url: string;
-    width: string;
-}
-
-export interface FlickrPicturesContent {
+export interface FlickrPhoto {
     id: string;
-    type: FlickrType;
-    url: string;
-    embed_url: string;
-    images: FlickrImage[];
+    title: string;
+    url_m: string;
+    height_m: string;
+    width_m: string;
+    url_l: string;
+    height_l: string;
+    width_l: string;
 }
 
-export interface FlickrPaginationContent {
-    total_count: number;
-    count: number;
-    offset: number;
-}
-
-export interface FlickrMetaContent {
-    status: number;
-    msg: string;
-    response_id: string;
+export interface FlickrPhotosContent {
+    page: number;
+    pages: number;
+    perpage: number;
+    total: number;
+    photo: FlickrPhoto[];
 }
 
 export interface FlickrGalleryResponse {
-    data: FlickrPicturesContent[];
-    pagination: FlickrPaginationContent;
-    meta: FlickrMetaContent;
+    photos: FlickrPhotosContent;
+    stat: string;
 }

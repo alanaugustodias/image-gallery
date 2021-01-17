@@ -1,2 +1,3 @@
-# financefy-app
-Finances Organizer made For You
+# Image Gallery
+
+An Image Gallery made in React for training purposes.

@@ -1,5 +1,5 @@
 import {GalleryResponse} from '@app/interfaces';
 
 export interface DefaultGalleryManager {
-    getImages(limit: number, offset?: number): Promise<GalleryResponse>;
+    getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse>;
 }

@@ -1,10 +1,12 @@
 {
-    "name": "@drikawa/financefy-app",
+    "name": "image-gallery",
     "version": "0.1.0",
-    "description": "Financefy APP",
+    "description": "Image Gallery",
     "main": "index.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack serve --config webpack/dev.config.js",
+        "dev:giphy": "cross-env NODE_ENV=development webpack serve --config webpack/dev.config.js --env environment=Giphy",
+        "dev:flickr": "cross-env NODE_ENV=development webpack serve --config webpack/dev.config.js --env environment=Flickr",
         "prod": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
         "lint": "eslint --ignore-pattern libs-polyfills --quiet --fix src/**/*.{ts,tsx}",
         "test": "jest --no-cache",
@@ -13,21 +15,22 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:DriKawaCO/financefy-app.git"
+        "url": "git@github.com:alanaugustodias/image-gallery.git"
     },
     "keywords": [
-        "react"
+        "react",
+        "image gallery",
+        "infinite scroll"
     ],
-    "author": "@drikawa",
+    "author": "@alanaugustodias",
     "contributors": [
-        "@alanaugustodias",
-        "@kawassaki"
+        "@alanaugustodias"
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/DriKawaCO/financefy-app/issues"
+        "url": "https://github.com/alanaugustodias/image-gallery/issues"
     },
-    "homepage": "https://github.com/DriKawaCO/financefy-app#readme",
+    "homepage": "https://github.com/alanaugustodias/image-gallery#readme",
     "browserslist": {
         "production": [
             ">0.2%",
@@ -41,18 +44,12 @@
         ]
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-brands-svg-icons": "^5.15.1",
-        "@fortawesome/free-regular-svg-icons": "^5.15.1",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
-        "@fortawesome/react-fontawesome": "^0.1.14",
         "axios": "^0.21.1",
-        "connected-react-router": "^6.8.0",
+        "fetch-jsonp": "^1.1.3",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-global-configuration": "^1.4.1",
-        "react-redux": "^7.2.2",
-        "react-router": "^5.2.0"
+        "react-redux": "^7.2.2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
@@ -67,8 +64,6 @@
         "@types/react-dom": "^17.0.0",
         "@types/react-global-configuration": "^1.3.1",
         "@types/react-redux": "^7.1.15",
-        "@types/react-router": "^5.1.11",
-        "@types/styled-components": "^5.1.7",
         "@typescript-eslint/eslint-plugin": "^4.12.0",
         "@typescript-eslint/parser": "^4.12.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
@@ -91,8 +86,6 @@
         "mini-css-extract-plugin": "^1.3.4",
         "node-sass": "^5.0.0",
         "prettier": "^2.2.1",
-        "redux-devtools-extension": "^2.13.8",
-        "redux-thunk": "^2.3.0",
         "sass-loader": "^10.1.1",
         "sass-resources-loader": "^2.1.1",
         "serve": "^11.3.2",

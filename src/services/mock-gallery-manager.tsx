@@ -17,10 +17,10 @@ export default class MockGalleryManager implements DefaultGalleryManager {
         this.galleryData = this.convertMockResponse(GalleryMockData);
     }
 
-    public getImages(limit: number, offset: number): Promise<GalleryResponse> {
+    public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {
         return new Promise((resolve) => {
             setTimeout(() => {
-                const nextImages = this.paginate(limit, offset);
+                const nextImages = this.paginate(pageSize, pageNumber);
                 if (!nextImages.length) {
                     resolve({images: []});
                 }
@@ -48,7 +48,6 @@ export default class MockGalleryManager implements DefaultGalleryManager {
                 };
                 return {
                     id: this.randomId(20),
-                    url,
                     title,
                     images: img,
                 };
