@@ -1,1 +1,1 @@
-export {default as useIntersectionObserver} from './user-intersection-observer';
+export {default as useIntersectionObserver} from './use-intersection-observer';

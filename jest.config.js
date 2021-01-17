@@ -7,7 +7,7 @@ module.exports = {
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/{!(index),}.{ts,tsx}'],
+    collectCoverageFrom: ['src/**/{!(index),}.{ts,tsx}', '!src/reducers/root-reducer.tsx', '!src/configs/**/*.tsx'],
     coverageDirectory: 'coverage',
     coverageThreshold: {
         global: {

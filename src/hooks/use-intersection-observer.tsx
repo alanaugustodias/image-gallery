@@ -23,8 +23,8 @@ function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>({
         rootMargin,
     };
 
-    const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
-        setEntry(entry);
+    const updateEntry = ([newEntry]: IntersectionObserverEntry[]): void => {
+        setEntry(newEntry);
     };
 
     useEffect(() => {

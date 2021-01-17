@@ -13,7 +13,7 @@ export default class GiphyGalleryManager implements DefaultGalleryManager {
     }
 
     public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {
-        const offset = (pageNumber === 1 ? 0 : (pageNumber - 1) * pageSize);
+        const offset = pageNumber === 1 ? 0 : (pageNumber - 1) * pageSize;
         const query = [`api_key=${this.apiKey}`, `limit=${pageSize}`, `offset=${offset}`].join('&');
         return axios.get(`${this.gifsURL}?${query}`).then(({data}) => this.convertGiphyResponse(data));
     }

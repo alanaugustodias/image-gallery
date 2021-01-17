@@ -8,7 +8,13 @@ import {Picture} from '@app/components';
 import {useDispatch} from 'react-redux';
 import {useIntersectionObserver} from '@app/hooks';
 
-function Gallery({className, galleryData, isLastPage, isLoading, ...props}: GalleryProps): ReactElement {
+function Gallery({
+    className,
+    galleryData,
+    isLastPage = false,
+    isLoading = false,
+    ...props
+}: GalleryProps): ReactElement {
     const dispatch = useDispatch();
     const loaderRef = useRef<HTMLDivElement | null>(null);
     const [isLoaderVisible] = useIntersectionObserver({
@@ -46,8 +52,8 @@ function Gallery({className, galleryData, isLastPage, isLoading, ...props}: Gall
 
 type GalleryProps = {
     galleryData: GalleryResponse;
-    isLastPage: boolean;
-    isLoading: boolean;
+    isLastPage?: boolean;
+    isLoading?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 export default Gallery;

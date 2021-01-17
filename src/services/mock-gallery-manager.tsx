@@ -41,7 +41,7 @@ export default class MockGalleryManager implements DefaultGalleryManager {
         }
 
         return {
-            images: workingData.map(({url, title, images}) => {
+            images: workingData.map(({title, images}) => {
                 const img: Images = {
                     preview: images.downsized,
                     original: images.original,

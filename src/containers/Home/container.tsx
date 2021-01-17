@@ -21,10 +21,10 @@ function Home(): ReactElement {
         }
 
         galleryManager.getImages(25, currentPage).then((galleryResponse) => {
-            if (!galleryResponse.images.length) {
-                dispath(GalleryActions.setLastPage());
-            } else {
+            if (galleryResponse.images.length) {
                 dispath(GalleryActions.addGalleryData(galleryResponse));
+            } else {
+                dispath(GalleryActions.setLastPage());
             }
         });
     }, [currentPage]);

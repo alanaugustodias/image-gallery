@@ -22,7 +22,7 @@ export default class FlickrGalleryManager implements DefaultGalleryManager {
             'jsoncallback=callback',
             `page=${pageNumber - 1}`,
         ].join('&');
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             fetchJsonp(`${this.photosURL}?${query}`, {
                 jsonpCallbackFunction: 'callback',
             })
@@ -41,13 +41,9 @@ export default class FlickrGalleryManager implements DefaultGalleryManager {
                 images: {
                     preview: {
                         url: photo.url_m,
-                        height: photo.height_m,
-                        width: photo.width_m,
                     },
                     original: {
                         url: photo.url_l,
-                        height: photo.height_l,
-                        width: photo.width_l,
                     },
                 },
             })),
