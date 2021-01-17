@@ -2,6 +2,8 @@
 
 An Image Gallery made in React for training purposes.
 
+[Live Demo](https://alanaugustodias.github.io/image-gallery/)
+
 The meaning of this project is to implement an Image Gallery, with Infinite Scroll, using the most recent versions of the following libraries:
 
 -   [React@17.0.1](https://github.com/facebook/react/blob/master/CHANGELOG.md#1701-october-22-2020)
@@ -117,6 +119,17 @@ Now you can run the provided scripts from `package.json`:
 
   Start a serve on http://localhost:5000 for production build on `/dist` folder
 
+- `npm run build`
+
+  Alias for running `npm run prod:giphy`
+
+- `npm run predeploy`
+
+  Alias for running `npm run build`
+
+- `npm run deploy`
+
+  Build the production version and deploy it to GitHub Pages
 
 ## The development process so far
 
