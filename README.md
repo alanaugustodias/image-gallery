@@ -2,7 +2,7 @@
 
 An Image Gallery made in React for training purposes.
 
-This meaning of this project is to implement an Image Gallery, with Infinite Scroll, using the most recent versions of the following libraries:
+The meaning of this project is to implement an Image Gallery, with Infinite Scroll, using the most recent versions of the following libraries:
 
 -   [React@17.0.1](https://github.com/facebook/react/blob/master/CHANGELOG.md#1701-october-22-2020)
 
@@ -56,36 +56,47 @@ Now you can run the provided scripts from `package.json`:
 - `npm run dev`
 
   Start the app on http://localhost:9000 using Webpack
+  
   Uses the Mock environment to provide images data
+  
   Mock data can be found on `src/assets/mock_data.json`
 
 - `npm run dev:giphy`
 
   Start the app on http://localhost:9000 using Webpack
+  
   Uses the Giphy environment to provide images from Giphy API
 
 - `npm run dev:flickr`
 
   Start the app on http://localhost:9000 using Webpack
+  
   Uses the Flickr environment to provide images from Flickr API
 
 - `npm run prod`
 
   Build the Production version of the app using Webpack
+  
   Output folder is: `/dist`
+  
   Uses the Mock environment to provide images data
+  
   Mock data can be found on `src/assets/mock_data.json`
 
 - `npm run prod:giphy`
 
   Build the Production version of the app using Webpack
+  
   Output folder is: `/dist`
+  
   Uses the Giphy environment to provide images from Giphy API
 
 - `npm run prod:flickr`
 
   Build the Production version of the app using Webpack
+  
   Output folder is: `/dist`
+  
   Uses the Flickr environment to provide images from Flickr API
 
 - `npm run lint`
@@ -95,6 +106,7 @@ Now you can run the provided scripts from `package.json`:
 - `npm run test`
 
   Run Jest with rules configured on `jest.config.js`
+  
   Provide coverage results on `/coverage` folder
 
 - `npm run test:watch`
