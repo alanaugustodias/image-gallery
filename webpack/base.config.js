@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const rootFolder = '../src';
@@ -55,6 +56,11 @@ const baseConfig = {
             inject: 'body',
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, rootFolder, 'blog.css'), to: path.resolve(__dirname, '../dist') }
+            ]
+        }),
         new CleanWebpackPlugin(),
     ],
 };
