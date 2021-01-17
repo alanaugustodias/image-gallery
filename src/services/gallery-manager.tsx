@@ -21,6 +21,12 @@ export default class GalleryManager implements DefaultGalleryManager {
         this.envAPI = this.galleryAPIMap[this.galleryAPI];
     }
 
+    /**
+     * Get generic images
+     * @param pageSize 
+     * @param pageNumber 
+     * @returns Promise<GalleryResponse>
+     */
     public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {
         return this.envAPI.getImages(pageSize, pageNumber);
     }

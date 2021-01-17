@@ -103,7 +103,7 @@ Now you can run the provided scripts from `package.json`:
 
 - `npm run serve`
 
-  Start a serve on http://localhost:3000 for production build on `/dist` folder
+  Start a serve on http://localhost:5000 for production build on `/dist` folder
 
 
 ## The development process so far

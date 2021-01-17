@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const { sassLoaders, module, plugins, ...baseConfig } = require('./base.config');
+const { sassLoaders, module: baseModule, plugins, ...baseConfig } = require('./base.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
@@ -17,6 +17,7 @@ const prodConfig = env => {
     };
 
     const prodModuleRules = [
+        ...baseModule.rules,
         {
             test: /\.css$/,
             use: [MiniCssExtractPlugin.loader, cssLoader]
@@ -38,15 +39,15 @@ const prodConfig = env => {
         optimization: {
             minimizer: [new TerserWebpackPlugin()],
         },
+        module: {
+            ...baseModule,
+            rules: prodModuleRules,
+        },
         plugins: [
             ...plugins,
             definePlugin,
             new MiniCssExtractPlugin(),
-        ],
-        module: {
-            ...module,
-            rules: prodModuleRules,
-        }
+        ]
     };
 };
 

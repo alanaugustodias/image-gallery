@@ -12,6 +12,12 @@ export default class FlickrGalleryManager implements DefaultGalleryManager {
         this.apiKey = config.get('apiKey');
     }
 
+    /**
+     * Get images using Flickr API
+     * @param pageSize
+     * @param pageNumber
+     * @returns Promise<GalleryResponse>
+     */
     public getImages(pageSize: number, pageNumber: number): Promise<GalleryResponse> {
         const query = [
             'method=flickr.photos.getRecent',
@@ -33,6 +39,11 @@ export default class FlickrGalleryManager implements DefaultGalleryManager {
         });
     }
 
+    /**
+     * Convert the received data into GalleryResponse
+     * @param param0
+     * @returns GalleryResponse
+     */
     private convertFlickrResponse(flickrResponse: FlickrGalleryResponse): GalleryResponse {
         return {
             images: flickrResponse.photos.photo.map((photo) => ({
