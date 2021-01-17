@@ -1,4 +1,4 @@
-import {ADD_GALLERY_DATA, GET_CURRENT_PAGE, SET_LAST_PAGE} from '@app/constants';
+import {ADD_GALLERY_DATA, GET_CURRENT_PAGE, SET_LAST_PAGE, SET_LOADING} from '@app/constants';
 
 import {GalleryResponse} from '@app/interfaces';
 
@@ -18,5 +18,11 @@ export function addGalleryData(galleryData: GalleryResponse) {
 export function setLastPage() {
     return {
         type: SET_LAST_PAGE,
+    };
+}
+
+export function setLoading() {
+    return {
+        type: SET_LOADING,
     };
 }

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const prodConfig = env => {
-    const _environment = env?.environment || 'Giphy'; // Default Environment
+    const _environment = env?.environment || 'Mock'; // Default Environment
     const definePlugin = new webpack.DefinePlugin({
         __ENVIRONMENT__: JSON.stringify(_environment)
     });

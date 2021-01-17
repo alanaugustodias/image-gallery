@@ -8,12 +8,16 @@ import {RootState} from '@app/reducers';
 
 function Home(): ReactElement {
     let galleryManager: GalleryManager;
-    const {currentPage, isLastPage, galleryData} = useSelector((state: RootState) => state.gallery);
+    const {currentPage, isLastPage, isLoading, galleryData} = useSelector((state: RootState) => state.gallery);
     const dispath = useDispatch();
 
     useEffect(() => {
         if (!galleryManager) {
             galleryManager = new GalleryManager();
+        }
+
+        if (!galleryData.images.length) {
+            dispath(GalleryActions.setLoading());
         }
 
         galleryManager.getImages(25, currentPage).then((galleryResponse) => {
@@ -25,7 +29,7 @@ function Home(): ReactElement {
         });
     }, [currentPage]);
 
-    return <Gallery galleryData={galleryData} isLastPage={isLastPage} />;
+    return <Gallery galleryData={galleryData} isLastPage={isLastPage} isLoading={isLoading} />;
 }
 
 export default Home;

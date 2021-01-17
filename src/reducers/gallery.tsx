@@ -1,9 +1,10 @@
-import {ADD_GALLERY_DATA, GET_CURRENT_PAGE, SET_LAST_PAGE} from '@app/constants';
+import {ADD_GALLERY_DATA, GET_CURRENT_PAGE, SET_LAST_PAGE, SET_LOADING} from '@app/constants';
 import {GalleryResponse, GalleryState} from '@app/interfaces';
 
 const initialState: GalleryState = {
     currentPage: 1,
     isLastPage: false,
+    isLoading: false,
     galleryData: {
         images: [],
     },
@@ -17,6 +18,7 @@ export default function GalleryReducer(state = initialState, action: {type: stri
                 : null;
             return {
                 ...state,
+                isLoading: false,
                 galleryData: {
                     images: newGalleryImages
                         ? state.galleryData.images.concat(newGalleryImages.images)
@@ -32,6 +34,12 @@ export default function GalleryReducer(state = initialState, action: {type: stri
             return {
                 ...state,
                 isLastPage: true,
+                isLoading: false,
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                isLoading: true,
             };
         default:
             return state;

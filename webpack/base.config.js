@@ -45,11 +45,6 @@ const baseConfig = {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 use: 'babel-loader',
-            },
-            {
-                test: /\.(png|jpe?g)$/,
-                exclude: /node_modules/,
-                use: 'file-loader',
             }
         ],
     },

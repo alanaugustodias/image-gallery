@@ -17,7 +17,7 @@ function PictureModal({className, onClose, picture, show, ...props}: PictureModa
     const getImageContent = () =>
         picture && show ? (
             <figure>
-                <img src={picture.images.original.url} />
+                <img src={picture.images.original.url} alt={picture.title} />
                 <label>{picture.title}</label>
             </figure>
         ) : (

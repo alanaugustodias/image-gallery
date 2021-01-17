@@ -1,15 +1,14 @@
 import './style.scss';
 
 import {GalleryResponse, PicturesContent} from '@app/interfaces';
-import {HTMLAttributes, ReactElement, RefObject, useEffect, useRef, useState} from 'react';
+import {HTMLAttributes, ReactElement, useEffect, useRef} from 'react';
 
 import {GalleryActions} from '@app/actions';
-import NoResourcesImg from '../../assets/images/no-resources.png';
 import {Picture} from '@app/components';
 import {useDispatch} from 'react-redux';
 import {useIntersectionObserver} from '@app/hooks';
 
-function Gallery({className, galleryData, isLastPage, ...props}: GalleryProps): ReactElement {
+function Gallery({className, galleryData, isLastPage, isLoading, ...props}: GalleryProps): ReactElement {
     const dispatch = useDispatch();
     const loaderRef = useRef<HTMLDivElement | null>(null);
     const [isLoaderVisible] = useIntersectionObserver({
@@ -20,16 +19,12 @@ function Gallery({className, galleryData, isLastPage, ...props}: GalleryProps): 
     });
 
     const getPictures = () => {
-        if (!galleryData.images.length) {
-            return (
-                <div className="empty-gallery">
-                    <img src={NoResourcesImg} />
-                </div>
-            );
+        if (!isLoading && !galleryData.images.length) {
+            return null;
         }
 
         return galleryData.images.map((picture: PicturesContent) => (
-            <Picture key={picture.id} src={picture.images.preview.url} picture={picture} />
+            <Picture key={picture.id} src={picture.images.preview.url} alt={picture.title} picture={picture} />
         ));
     };
 
@@ -43,12 +38,16 @@ function Gallery({className, galleryData, isLastPage, ...props}: GalleryProps): 
         <section {...props} className={`gallery ${className || ''}`}>
             <div className="gallery-view">{getPictures()}</div>
             <div className="scroll-loader" ref={loaderRef}>
-                {isLastPage ? 'No more images to show for now :(' : 'Loading more images'}
+                {isLastPage ? 'No more images to show for now :(' : 'Loading images...'}
             </div>
         </section>
     );
 }
 
-type GalleryProps = {galleryData: GalleryResponse; isLastPage: boolean} & HTMLAttributes<HTMLDivElement>;
+type GalleryProps = {
+    galleryData: GalleryResponse;
+    isLastPage: boolean;
+    isLoading: boolean;
+} & HTMLAttributes<HTMLDivElement>;
 
 export default Gallery;

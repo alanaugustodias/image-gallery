@@ -16,5 +16,5 @@ render(
             <Home />
         </Suspense>
     </Provider>,
-    document.getElementById('content'),
+    document.getElementById('gallery-content'),
 );
